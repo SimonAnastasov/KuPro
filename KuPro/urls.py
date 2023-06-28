@@ -15,8 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
+from KuProApp.views import index
+from theme.views import index as theme_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
+    path('home/', index, name='index'),
+    path('tailwind/', theme_index, name='theme_index'),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
