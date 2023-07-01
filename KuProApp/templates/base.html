@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% load static tailwind_tags %}
+{% load define_variable %}
 
 <html lang="en">
 <head>
@@ -15,12 +16,63 @@
 	</title>
 
 	{% tailwind_css %}
+
+	<style>
+
+	</style>
 </head>
 
-<body class="bg-gray-50 font-serif leading-normal tracking-normal">
+<body class="">
+	<!-- Background -->
+	<div class="fixed inset-0">
+		<div class="absolute inset-0 bg-black/60"></div>
+    	<img src="{% static 'images/bg.png' %}" alt="decorative background image" class="w-full h-full object-cover">
+	</div>
+
+	<!-- Header -->
+	<div class="p-12">
+		<div class="w-full bg-primary relative flex justify-end p-6 py-3 rounded-lg">
+			<a href="{% url 'index' %}" class="block absolute left-6 -top-3 -bottom-3 min-h-[1.5rem] rounded-full overflow-hidden bg-white">
+				<img src="{% static 'images/logo.png' %}" alt="KuPro logo" class="min-w-[1.5rem] h-full object-contain">
+			</a>
+			<div id="hamburgerMenuIcon" class="cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-white w-10 h-10">
+				  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+				</svg>
+			</div>
+		</div>
+	</div>
+
+	<!-- Menu -->
+	<div id="mainMenu" class="fixed flex flex-col p-12 gap-8 top-0 bottom-0 w-[400px] right-0 bg-primary transition-all duration-500 shadow-[-10px_0_15px_0_rgba(0,0,0,0.2)]" style="transform: translate(400px, 0)">
+		<div class="flex justify-end">
+			<div id="mainMenuCloseButton" class="cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-white w-10 h-10">
+				  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+				</svg>
+			</div>
+		</div>
+		<div class="text-white w-full flex flex-col gap-6 text-xl text-white underline">
+			<a href="{% url 'index' %}" class="Home">Home</a>
+			<a href="{% url 'index' %}" class="Home">Home</a>
+		</div>
+	</div>
+
 	{% block content %}
 		/
 	{% endblock %}
 
+	<script>
+		document.getElementById('hamburgerMenuIcon').addEventListener('click', () => {
+			let mainMenu = document.getElementById('mainMenu');
+			if (mainMenu.style.transform === 'translate(400px, 0px)') mainMenu.style.transform = 'translate(0px, 0px)';
+			else mainMenu.style.transform = 'translate(400px, 0px)';
+		})
+
+		document.getElementById('mainMenuCloseButton').addEventListener('click', () => {
+			let mainMenu = document.getElementById('mainMenu');
+			mainMenu.style.transform = 'translate(400px, 0px)';
+		})
+	</script>
 </body>
 </html>
