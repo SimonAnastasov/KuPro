@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from KuProApp.views import index
-from theme.views import index as theme_index
+from KuProApp_Backup.views import index
+from KuProApp.views import index as theme_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
