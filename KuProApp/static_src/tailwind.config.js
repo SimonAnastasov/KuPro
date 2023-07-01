@@ -42,7 +42,12 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                "primary": "#5BB1D9",
+                "primary-soft": "#5BB1D9CC",
+            }
+        },
     },
     plugins: [
         /**
