@@ -26,6 +26,8 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             return redirect('index')
+        else:
+            return render(request, 'login.html', {'error': 'Incorrect username or password!'})
 
     return render(request, 'login.html')
 
