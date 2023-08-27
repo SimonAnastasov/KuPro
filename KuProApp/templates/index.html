@@ -2,8 +2,47 @@
 {% load static %}
 {% block content %}
 
-<div class="">
-    Test
+<div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg">
+    {% if user.is_authenticated %}
+        <h1 class="pl-4">Welcome {{user.name}}
+            {% if user.user_type == "SELLER" %} (Seller Profile) {% endif %}
+            {% if user.user_type == "STANDARD" %} (Standard Profile) {% endif %}
+        </h1>
+    {% else %}
+        <h1 class="pl-4">Welcome Guest</h1>
+    {% endif %}
+
+    {% if user.is_authenticated and user.user_type == "SELLER" %}
+        <div class="mt-16">
+            <a href="{% url 'index' %}" class="block px-12 py-2 font-light tracking-wide border-2 border-transparent text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-lg">
+                Add ad
+            </a>
+
+            <a href="{% url 'index' %}" class="block mt-6 px-12 py-2 font-light tracking-wide border-2 border-white text-center bg-transparent text-white transition-all duration-300 hover:text-white hover:bg-black hover:border-transparent rounded-lg">
+                View your ads
+            </a>
+        </div>
+    {% else %}
+        <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-8">
+            {% for ad in ads %}
+                <div class="bg-primary/80 p-4 pb-6 rounded-lg">
+                    <div class="grid grid-cols-5 gap-4">
+                        <div class="col-span-2">
+                            <img class="rounded-lg" src="{{ MEDIA_URL }}{{ ad.image.url }}" alt="{{ ad.title }}">
+                        </div>
+                        <div class="col-span-3 text-white">
+                            <h2 class="text-lg leading-5">{{ ad.title }}</h2>
+                            <p class="mt-2 font-light leading-5">{{ ad.description }}</p>
+                        </div>
+                    </div>
+
+                    <a href="{% url 'ad_details' ad.id %}" class="block mt-8 w-fit mx-auto px-12 py-1 font-light tracking-wide text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-full">
+                        Read More
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}

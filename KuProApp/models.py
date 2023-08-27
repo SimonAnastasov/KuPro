@@ -16,6 +16,7 @@ class User(AbstractUser):
         choices=UserType.choices,
         default=UserType.STANDARD,
     )
+    phone = models.CharField(max_length=25, default="078333283")
 
     def __str__(self):
         return f"{self.name}"
@@ -27,7 +28,8 @@ class Ad(models.Model):
     description = models.TextField()
     price = models.FloatField()
     image = models.ImageField(upload_to="ad_photos", null=True, blank=True)
-    seller_owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    seller_owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1,
+                                     limit_choices_to={'user_type': User.UserType.SELLER})
 
     def __str__(self):
         return f"{self.title} - by {self.seller_owner.name}"

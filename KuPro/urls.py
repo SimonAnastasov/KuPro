@@ -17,12 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from KuProApp.views import index, login, register
+from KuProApp.views import index, login, register, ad_details
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', index, name='index'),
+    path('ad/<int:ad_id>/', ad_details, name='ad_details'),
+
     path('login/', login, name='login'),
     path('register/', register, name='register'),
+
     path("__reload__/", include("django_browser_reload.urls")),
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

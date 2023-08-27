@@ -1,12 +1,16 @@
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, get_user_model
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
+from .models import Ad
+
 
 # Create your views here.
 def index(request):
+    ads = Ad.objects.all()
+
     if request.method == 'GET':
         logout = request.GET.get('logout')
 
@@ -14,7 +18,13 @@ def index(request):
             auth_logout(request)
             return redirect('index')
 
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'user': request.user, 'ads': ads})
+
+
+def ad_details(request, ad_id):
+    ad = get_object_or_404(Ad, id=ad_id)
+
+    return render(request, 'ad_details.html', {'ad': ad})
 
 
 def login(request):

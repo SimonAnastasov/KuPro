@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg lg:w-1/3">
+    <a class="pl-4 mb-8 block text-sm underline" href="{% url 'index' %}">← Back</a>
+
+    <h2 class="pl-4">{{ ad.title }}</h2>
+
+    <div class="mt-2 p-4 bg-primary/80 rounded-lg">
+        <img class="mb-4 h-36 lg:h-52 mx-auto lg:mx-0 rounded-lg" src="{{ ad.image.url }}" alt="{{ ad.title }}">
+        <p>{{ ad.description }}</p>
+
+        <div class="mt-8 flex items-center gap-2">
+            <div class="w-fit h-fit -rotate-45 text-2xl">💶</div>
+            <div>€{{ ad.price }}</div>
+        </div>
+        <div class="mt-2 flex items-center gap-2">
+            <div class="w-fit h-fit text-2xl">☎️</div>
+            <div>{{ ad.seller_owner.phone }}</div>
+        </div>
+
+        <div class="mt-8 mb-2">
+            <a href="tel:{{ ad.seller_owner.phone }}" class="block w-fit mx-auto px-12 py-1 font-light tracking-wide text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-full">
+                Contact Seller & Buy
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
