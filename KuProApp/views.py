@@ -42,13 +42,13 @@ def register(request):
         try:
             validate_email(email)
         except ValidationError as e:
-            return render(request, 'register.html')
+            return render(request, 'register.html', {'error': 'Please enter a valid email!'})
 
         if not username.strip() or not email.strip() or \
                 not password.strip() or not confirm_password.strip() or password != confirm_password or \
                 not name.strip() or not user_type.strip():
 
-            return render(request, 'register.html')
+            return render(request, 'register.html', {'error': 'Passwords do not match!'})
 
         user = get_user_model().objects.create_user(username=username,
                                                     email=email,

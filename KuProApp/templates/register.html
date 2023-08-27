@@ -6,6 +6,11 @@
     <h1 class="pl-4">Register</h1>
     <form method="POST" class="w-full flex flex-col gap-6 mt-6">
         {% csrf_token %}
+
+        {% if error %}
+            <p class="pl-4 text-lg lg:text-xl text-red-200">❌ {{ error }}</p>
+        {% endif %}
+
         <input required type="text" id="username" name="username" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your username...">
         <input required type="text" id="email" name="email" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your email...">
         <input required type="password" id="password" name="password" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your password...">
