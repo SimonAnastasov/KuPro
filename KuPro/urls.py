@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from KuProApp.views import index
+from KuProApp.views import index, login, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
     path("__reload__/", include("django_browser_reload.urls")),
 ]

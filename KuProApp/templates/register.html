@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg">
+    <h1 class="pl-4">Register</h1>
+    <form method="POST" class="w-full flex flex-col gap-6 mt-6">
+        {% csrf_token %}
+        <input required type="text" id="username" name="username" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your username...">
+        <input required type="text" id="email" name="email" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your email...">
+        <input required type="password" id="password" name="password" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your password...">
+        <input required type="password" id="confirm_password" name="confirm_password" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Confirm your password...">
+        <input required type="text" id="name" name="name" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your name...">
+        <div class="flex items-center gap-4">
+            <input required type="radio" id="standard_profile" name="user_type" value="STANDARD" class="focus:text-primary text-primary focus:ring-primary"/>
+            <label for="standard_profile">Standard Profile</label>
+        </div>
+        <div class="flex items-center gap-4">
+            <input required type="radio" id="seller_profile" name="user_type" value="SELLER" class="focus:text-primary text-primary focus:ring-primary"/>
+            <label for="seller_profile">Seller Profile</label>
+        </div>
+        <button type="submit" class="bg-white p-6 py-3 text-primary-dark lg:text-lg rounded-lg">Register</button>
+    </form>
+</div>
+
+{% endblock %}

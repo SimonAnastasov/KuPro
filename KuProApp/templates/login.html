@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg">
+    <h1 class="pl-4">Login</h1>
+    <form method="POST" class="w-full flex flex-col gap-6 mt-6">
+        {% csrf_token %}
+        <input required type="text" id="username" name="username" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your username...">
+        <input required type="password" id="password" name="password" class="lg:text-lg rounded-lg border-2 border-primary p-6 py-3 bg-transparent focus:border-primary placeholder-white/80" placeholder="Enter your password...">
+        <button type="submit" class="bg-white p-6 py-3 text-primary-dark lg:text-lg rounded-lg">Login</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -24,13 +24,13 @@
 
 <body class="">
 	<!-- Background -->
-	<div class="fixed inset-0">
+	<div class="fixed inset-0 z-[-1]">
 		<div class="absolute inset-0 bg-black/60"></div>
     	<img src="{% static 'images/bg.png' %}" alt="decorative background image" class="w-full h-full object-cover">
 	</div>
 
 	<!-- Header -->
-	<div class="p-12">
+	<div class="p-6 lg:p-12">
 		<div class="w-full bg-primary relative flex justify-end p-6 py-3 rounded-lg">
 			<a href="{% url 'index' %}" class="block absolute left-6 -top-3 -bottom-3 min-h-[1.5rem] rounded-full overflow-hidden bg-white">
 				<img src="{% static 'images/logo.png' %}" alt="KuPro logo" class="min-w-[1.5rem] h-full object-contain">
@@ -44,7 +44,7 @@
 	</div>
 
 	<!-- Menu -->
-	<div id="mainMenu" class="fixed flex flex-col p-12 gap-8 top-0 bottom-0 w-[400px] right-0 bg-primary transition-all duration-500 shadow-[-10px_0_15px_0_rgba(0,0,0,0.2)]" style="transform: translate(400px, 0)">
+	<div id="mainMenu" class="fixed flex flex-col p-12 gap-8 top-0 bottom-0 w-full lg:w-[400px] right-0 bg-primary transition-all duration-500 shadow-[-10px_0_15px_0_rgba(0,0,0,0.2)]" style="transform: translate(100%, 0)">
 		<div class="flex justify-end">
 			<div id="mainMenuCloseButton" class="cursor-pointer">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-white w-10 h-10">
@@ -53,8 +53,13 @@
 			</div>
 		</div>
 		<div class="text-white w-full flex flex-col gap-6 text-xl text-white underline">
-			<a href="{% url 'index' %}" class="Home">Home</a>
-			<a href="{% url 'index' %}" class="Home">Home</a>
+			<a href="{% url 'index' %}">Home</a>
+			{% if user.is_authenticated %}
+				<a href="/?logout=true">Logout</a>
+			{% else %}
+				<a href="{% url 'login' %}">Login</a>
+				<a href="{% url 'register' %}">Register</a>
+			{% endif %}
 		</div>
 	</div>
 
@@ -65,13 +70,12 @@
 	<script>
 		document.getElementById('hamburgerMenuIcon').addEventListener('click', () => {
 			let mainMenu = document.getElementById('mainMenu');
-			if (mainMenu.style.transform === 'translate(400px, 0px)') mainMenu.style.transform = 'translate(0px, 0px)';
-			else mainMenu.style.transform = 'translate(400px, 0px)';
+			mainMenu.style.transform = 'translate(0px, 0px)';
 		})
 
 		document.getElementById('mainMenuCloseButton').addEventListener('click', () => {
 			let mainMenu = document.getElementById('mainMenu');
-			mainMenu.style.transform = 'translate(400px, 0px)';
+			mainMenu.style.transform = 'translate(100%, 0px)';
 		})
 	</script>
 </body>

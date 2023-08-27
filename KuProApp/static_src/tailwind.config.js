@@ -46,6 +46,7 @@ module.exports = {
             colors: {
                 "primary": "#5BB1D9",
                 "primary-soft": "#5BB1D9CC",
+                "primary-dark": "#1A4C63"
             }
         },
     },
