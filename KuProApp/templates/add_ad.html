@@ -4,7 +4,7 @@
 
 <div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg lg:w-1/3">
     <h1 class="pl-4">Add ad</h1>
-    <form method="POST" class="w-full flex flex-col gap-6 mt-6">
+    <form method="POST" enctype='multipart/form-data' class="w-full flex flex-col gap-6 mt-6">
         {% csrf_token %}
 
         {% if error %}

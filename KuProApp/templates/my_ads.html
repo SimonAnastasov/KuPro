@@ -7,12 +7,12 @@
 
     <h1 class="pl-4">Your ads:</h1>
 
-    <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-8">
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-x-0 gap-y-8 lg:gap-8">
         {% for ad in ads %}
             <div class="bg-primary/80 p-4 pb-6 rounded-lg">
                 <div class="grid grid-cols-5 gap-4">
                     <div class="col-span-2">
-                        <img class="rounded-lg" src="{{ MEDIA_URL }}{{ ad.image.url }}" alt="{{ ad.title }}">
+                        <img class="rounded-lg" src="{{ ad.image.url }}" alt="{{ ad.title }}">
                     </div>
                     <div class="col-span-3 text-white">
                         <h2 class="text-lg leading-5">{{ ad.title }}</h2>

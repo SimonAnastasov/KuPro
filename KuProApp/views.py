@@ -37,7 +37,7 @@ def add_ad(request):
         title = request.POST["title"]
         description = request.POST["description"]
         price = request.POST["price"]
-        image = request.POST["image"]
+        image = request.FILES.get("image")
 
         ad = Ad(title=title, description=description, price=price, image=image, seller_owner=request.user)
         ad.save()
