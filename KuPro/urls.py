@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from KuProApp.views import index, login, register, ad_details
+from KuProApp.views import index, login, register, ad_details, my_ads, add_ad, successfully_added_ad
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +27,10 @@ urlpatterns = [
 
     path('', index, name='index'),
     path('ad/<int:ad_id>/', ad_details, name='ad_details'),
+
+    path('my_ads/', my_ads, name='my_ads'),
+    path('ad/add/', add_ad, name='add_ad'),
+    path('ad/add/success', successfully_added_ad, name='successfully_added_ad'),
 
     path('login/', login, name='login'),
     path('register/', register, name='register'),

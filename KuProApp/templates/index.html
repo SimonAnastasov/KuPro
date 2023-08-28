@@ -14,11 +14,11 @@
 
     {% if user.is_authenticated and user.user_type == "SELLER" %}
         <div class="mt-16">
-            <a href="{% url 'index' %}" class="block px-12 py-2 font-light tracking-wide border-2 border-transparent text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-lg">
+            <a href="{% url 'add_ad' %}" class="block px-12 py-2 font-light tracking-wide border-2 border-transparent text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-lg">
                 Add ad
             </a>
 
-            <a href="{% url 'index' %}" class="block mt-6 px-12 py-2 font-light tracking-wide border-2 border-white text-center bg-transparent text-white transition-all duration-300 hover:text-white hover:bg-black hover:border-transparent rounded-lg">
+            <a href="{% url 'my_ads' %}" class="block mt-6 px-12 py-2 font-light tracking-wide border-2 border-white text-center bg-transparent text-white transition-all duration-300 hover:text-white hover:bg-black hover:border-transparent rounded-lg">
                 View your ads
             </a>
         </div>

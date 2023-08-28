@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg">
+    <a class="pl-4 mb-8 block text-sm underline" href="{% url 'index' %}">← Back</a>
+
+    <h1 class="pl-4">Your ads:</h1>
+
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-8">
+        {% for ad in ads %}
+            <div class="bg-primary/80 p-4 pb-6 rounded-lg">
+                <div class="grid grid-cols-5 gap-4">
+                    <div class="col-span-2">
+                        <img class="rounded-lg" src="{{ MEDIA_URL }}{{ ad.image.url }}" alt="{{ ad.title }}">
+                    </div>
+                    <div class="col-span-3 text-white">
+                        <h2 class="text-lg leading-5">{{ ad.title }}</h2>
+                        <p class="mt-2 font-light leading-5">{{ ad.description }}</p>
+                    </div>
+                </div>
+
+                <a href="{% url 'ad_details' ad.id %}" class="block mt-8 w-fit mx-auto px-12 py-1 font-light tracking-wide text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-full">
+                    Read More
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="text-white p-6 lg:p-12 mt-2 lg:mt-0 lg:text-lg">
+    <div class="p-4 mt-8 h-[60vh] flex flex-col justify-between rounded-lg bg-primary">
+        <div class="h-[50vh] text-white text-xl text-center flex justify-center items-center">
+            Ad successfully created and added.
+        </div>
+
+        <a href="{% url 'my_ads' %}" class="block px-12 py-2 font-light tracking-wide border-2 border-transparent text-center bg-white text-black transition-all duration-300 hover:text-white hover:bg-black rounded-lg">
+            View my ads
+        </a>
+    </div>
+</div>
+
+{% endblock %}

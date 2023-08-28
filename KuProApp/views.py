@@ -24,7 +24,31 @@ def index(request):
 def ad_details(request, ad_id):
     ad = get_object_or_404(Ad, id=ad_id)
 
-    return render(request, 'ad_details.html', {'ad': ad})
+    return render(request, 'ad_details.html', {'user': request.user, 'ad': ad})
+
+
+def my_ads(request):
+    ads = Ad.objects.filter(seller_owner=request.user)
+    return render(request, 'my_ads.html', {'user': request.user, 'ads': ads})
+
+
+def add_ad(request):
+    if request.method == 'POST':
+        title = request.POST["title"]
+        description = request.POST["description"]
+        price = request.POST["price"]
+        image = request.POST["image"]
+
+        ad = Ad(title=title, description=description, price=price, image=image, seller_owner=request.user)
+        ad.save()
+
+        return redirect('successfully_added_ad')
+
+    return render(request, 'add_ad.html', {})
+
+
+def successfully_added_ad(request):
+    return render(request, 'successfully_added_ad.html', {})
 
 
 def login(request):
@@ -50,6 +74,7 @@ def register(request):
         confirm_password = request.POST['confirm_password']
         name = request.POST['name']
         user_type = request.POST['user_type']
+        phone = request.POST['phone']
 
         try:
             validate_email(email)
@@ -69,6 +94,7 @@ def register(request):
         if user is not None:
             user.name = name
             user.user_type = user_type
+            user.phone = phone
             user.save()
 
             auth_login(request, user)
